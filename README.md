@@ -1,8 +1,6 @@
 # An Appointment Intake for Animal Clinic - n8n Workflow
 
-Automated appointment booking pipeline for a veterinary clinic, built with **n8n** (self-hosted, Community Edition).
-
-A website booking form sends data to an n8n webhook. The workflow cleans and validates the request, then stores valid bookings in Google Sheets - no manual data entry for clinic staff.
+Automated appointment booking pipeline for a veterinary clinic, built with **n8n** (self-hosted, Community Edition). A website booking form sends data to an n8n webhook. The workflow cleans and validates the request, then stores valid bookings in Google Sheets - no manual data entry for clinic staff.
 
 ---
 
