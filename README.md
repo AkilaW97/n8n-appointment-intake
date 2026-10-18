@@ -2,9 +2,7 @@
 
 Automated appointment booking pipeline for a veterinary clinic, built with **n8n** (self-hosted, Community Edition).
 
-A website booking form sends data to an n8n webhook. The workflow cleans and validates the request, then stores valid bookings in Google Sheets — no manual data entry for clinic staff.
-
-> Project 1 of 5 in my n8n learning portfolio (beginner → master).
+A website booking form sends data to an n8n webhook. The workflow cleans and validates the request, then stores valid bookings in Google Sheets - no manual data entry for clinic staff.
 
 ---
 
@@ -33,7 +31,7 @@ Webhook (POST) → Edit Fields → If (validate) ─┬─ true  → Google Shee
 | Node | Purpose |
 |---|---|
 | **Webhook** | Receives booking JSON from the website form (`POST /webhook/appointment`) |
-| **Edit Fields** | Normalizes data — trims names, lowercases emails, renames fields, generates `bookingId`, sets `status = Pending` |
+| **Edit Fields** | Normalizes data - trims names, lowercases emails, renames fields, generates `bookingId`, sets `status = Pending` |
 | **If** | Validates required name, email format, Sri Lankan mobile format (`07XXXXXXXX`), and future appointment date |
 | **Google Sheets** | Appends the valid booking as a new row (raw cell format to preserve leading zeros) |
 
@@ -122,4 +120,4 @@ n8n · Docker · Google Sheets API · OAuth2 · Postman
 
 ## Author
 
-**Akila** — Full-stack Software Engineer
+**Akila** - Full-stack Software Engineer
