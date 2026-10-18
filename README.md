@@ -21,7 +21,7 @@ An automated intake workflow that accepts bookings 24/7, rejects invalid request
 
 ## Workflow
 
-![Workflow](screenshots/workflow.png)
+![Workflow](screenshots/demo.gif)
 
 ```
 Webhook (POST) → Edit Fields → If (validate) ─┬─ true  → Google Sheets (append row)
