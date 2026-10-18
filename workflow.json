@@ -1,0 +1,344 @@
+{
+  "name": "Appointment Intake",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "appointment",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "2938076e-53da-4e3f-8a85-6acaa49dab0d",
+      "name": "Webhook",
+      "webhookId": "03dd1038-d7bb-44a4-af37-dcd741c37307"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fe3bfc2c-62df-4dee-9d66-3e51baf57130",
+              "name": "ownerName",
+              "value": "={{ $json.body.ownerName.trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "62bf37e4-47d6-4711-8028-2282344fab39",
+              "name": "phone",
+              "value": "={{ $json.body.phone }}",
+              "type": "string"
+            },
+            {
+              "id": "37213fd2-afd9-459f-ae54-d816b6373f2a",
+              "name": "email",
+              "value": "={{ $json.body.email.toLowerCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "e68b6103-266c-482e-801a-9ee72634cccd",
+              "name": "petName",
+              "value": "={{ $json.body.petName }}",
+              "type": "string"
+            },
+            {
+              "id": "cc75d506-f676-4879-b185-c217507b5d72",
+              "name": "petType",
+              "value": "={{ $json.body.petType }}",
+              "type": "string"
+            },
+            {
+              "id": "2296fa2c-799b-449b-be03-05e108eb5e61",
+              "name": "appointmentDate",
+              "value": "={{ $json.body.date }}",
+              "type": "string"
+            },
+            {
+              "id": "64682721-4dd2-4d47-91b6-d5e4ded6b3d0",
+              "name": "appointmentTime",
+              "value": "={{ $json.body.time }}",
+              "type": "string"
+            },
+            {
+              "id": "e5df049c-9927-46c3-a77b-d3dbf8d0f3ac",
+              "name": "reason",
+              "value": "={{ $json.body.reason }}",
+              "type": "string"
+            },
+            {
+              "id": "abf3fadc-10ca-40cf-aa23-6f8897a07a11",
+              "name": "bookingId",
+              "value": "={{ 'VO-' + $now.toFormat('yyyyMMddHHmmss') }}",
+              "type": "string"
+            },
+            {
+              "id": "4647f8ad-2549-4b01-9a60-08c21635d090",
+              "name": "status",
+              "value": "Pending",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "db79a0ad-900c-42b8-8837-68cf278dd882",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "75b11641-25d8-4ee4-bde4-5390f8f52e38",
+              "leftValue": "={{ $json.ownerName }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "c687eb62-83ba-4d15-8b1e-0bde5f6cfa69",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            },
+            {
+              "id": "8eee4954-f9b0-4d70-bce2-6c05cca77a03",
+              "leftValue": "={{ $json.phone }}",
+              "rightValue": "^07\\d{8}$",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            },
+            {
+              "id": "15c8fcd1-4f16-48ac-8ae9-daf012e9d3a3",
+              "leftValue": "={{ $json.appointmentDate }}",
+              "rightValue": "={{ $today }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "after"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        448,
+        0
+      ],
+      "id": "7ea88656-b530-4ca4-87c2-b192b6f4f1ca",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1VA8cZ_RgjaKVbFV-x8zT8Y-OVa67daj6r0MrXOz631k",
+          "mode": "list",
+          "cachedResultName": "VetsOne Appointments",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1VA8cZ_RgjaKVbFV-x8zT8Y-OVa67daj6r0MrXOz631k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "YOUR_SHEET_ID"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "bookingId",
+              "displayName": "bookingId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ownerName",
+              "displayName": "ownerName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "petName",
+              "displayName": "petName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "petType",
+              "displayName": "petType",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "appointmentDate",
+              "displayName": "appointmentDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "appointmentTime",
+              "displayName": "appointmentTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "reason",
+              "displayName": "reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        672,
+        -96
+      ],
+      "id": "63ad2ca4-8798-46c8-9a2e-5c1a3fa2920b",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "pKDT4lpnuSIXjmWh",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e4bc0d5f-ac22-4d09-9cb5-f5038872d0d9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1fdd2802c2731006a6e298f6c5e0106fed92533802b5888ebe140e6a8ce9271a"
+  },
+  "nodeGroups": [],
+  "id": "QOHvn0mvAF1hrYqW",
+  "tags": []
+}
