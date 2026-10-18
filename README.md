@@ -1,4 +1,4 @@
-# 🐾 VetsOne Appointment Intake — n8n Workflow
+# An Appointment Intake for Animal Clinic — n8n Workflow
 
 Automated appointment booking pipeline for a veterinary clinic, built with **n8n** (self-hosted, Community Edition).
 
@@ -8,20 +8,20 @@ A website booking form sends data to an n8n webhook. The workflow cleans and val
 
 ---
 
-## 📌 Business Problem
+## Business Problem
 
 The clinic received appointment requests through calls and messages, which staff had to record manually. This caused:
 - Missed or duplicated bookings
 - Inconsistent data (wrong phone formats, past dates, typos)
 - No single place to see all upcoming appointments
 
-## ✅ Solution
+## Solution
 
 An automated intake workflow that accepts bookings 24/7, rejects invalid requests, and keeps a clean, structured booking log.
 
 ---
 
-## 🔄 Workflow
+## Workflow
 
 ![Workflow](screenshots/workflow.png)
 
@@ -39,7 +39,7 @@ Webhook (POST) → Edit Fields → If (validate) ─┬─ true  → Google Shee
 
 ---
 
-## 🧠 n8n Concepts Used
+## n8n Concepts Used
 
 - Webhook trigger (test vs production URLs)
 - Expressions: `$json`, `$now`, `$today`, Luxon date formatting
@@ -50,7 +50,7 @@ Webhook (POST) → Edit Fields → If (validate) ─┬─ true  → Google Shee
 
 ---
 
-## 📥 Sample Request
+## Sample Request
 
 ```bash
 curl -X POST http://localhost:5678/webhook/appointment \
@@ -67,7 +67,7 @@ curl -X POST http://localhost:5678/webhook/appointment \
   }'
 ```
 
-## 📤 Result
+## Result
 
 ![Google Sheet result](screenshots/sheet-result.png)
 
@@ -77,7 +77,7 @@ curl -X POST http://localhost:5678/webhook/appointment \
 
 ---
 
-## 🚀 Setup
+## Setup
 
 ### 1. Run n8n
 ```bash
@@ -107,7 +107,7 @@ Click **Publish** to enable the production webhook URL.
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Telegram alert to clinic staff on new bookings
 - [ ] Confirmation email to pet owner
@@ -116,10 +116,10 @@ Click **Publish** to enable the production webhook URL.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 n8n · Docker · Google Sheets API · OAuth2 · Postman
 
-## 👤 Author
+## Author
 
-**Akila (Kevin)** — Full-stack Software Engineer (Spring Boot · React · PostgreSQL)
+**Akila** — Full-stack Software Engineer
