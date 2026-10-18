@@ -1,4 +1,4 @@
-# An Appointment Intake for Animal Clinic — n8n Workflow
+# An Appointment Intake for Animal Clinic - n8n Workflow
 
 Automated appointment booking pipeline for a veterinary clinic, built with **n8n** (self-hosted, Community Edition).
 
